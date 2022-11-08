@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Home from "./components/home";
+import AddTask from "./components/addTask";
+import Jobs from "./components/jobs";
+import Schedule from "./components/schedule";
+import { Route, Routes } from "react-router-dom";
+import Profile from "./components/profile";
+import NotFound from "./components/notFound";
+import SideNav from "./components/sideNav";
+import SideBar from "./components/sideBar";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <SideBar />
+      {/* <SideNav /> */}
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/schedule" element={<Schedule />} />
+          <Route path="/addtask" element={<AddTask />} />
+          <Route path="/jobs" element={<Jobs />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
     </div>
   );
 }
