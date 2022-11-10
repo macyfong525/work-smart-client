@@ -6,16 +6,25 @@ import { AiOutlineDoubleLeft, AiOutlineDoubleRight, AiFillHome, AiOutlinePlus, A
 import { BiSupport, BiCurrentLocation } from 'react-icons/bi';
 import { RiArrowDownSFill, RiArrowUpSFill } from "react-icons/ri";
 import styles from "./sidebar.module.css";
+import Header from "./header";
 
-export default function SideBar() {
-    const [open, setopen] = useState(true)
+
+export default function SideBar(props) {
+    const [open, setopen] = useState(false)
+    
 	const [sidebar, setSidebar] = useState(false);
 
 	const showSidebar = () => setSidebar(!sidebar);
     const toggleOpen = () => setopen(!open);
 
-	return (
-		<div className={open ? styles.sidebar : styles.sidebarClosed}>
+	if(props.hide)
+		return ( <></>)
+
+		return (
+
+			
+			<div className={open ? styles.sidebar : styles.sidebarClosed} style={{marginTop: '99px'}}>
+			
 			<button className={styles.menuBtn} onClick={toggleOpen}>
 				{open? (<AiOutlineDoubleLeft />): (<AiOutlineDoubleRight />)}
 			</button>

@@ -10,15 +10,22 @@ import Contact from "./components/contact";
 import Location from "./components/location";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import { useState } from "react";
+import Login from "./components/login/login";
+import Header from "./components/header";
 
 function App() {
+  const [hide, setHide] = useState(false)
+  
   return (
     <div className="App">
-      <SideBar />
+    <Header/>
       {/* <SideNav /> */}
-      <main>
+      <SideBar hide={hide} />
+      <main style={{marginTop:'99px'}}>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login setSideBarVisibility={setHide} />}  />
           <Route path="/schedule" element={<Schedule />} />
           <Route path="/addtask" element={<AddTask />} />
           <Route path="/jobs" element={<Jobs />} />
