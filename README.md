@@ -6,13 +6,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Clone the project your directory:
 
-### `git clone https://github.com/macyfong525/worksmart.git`
+`git clone https://github.com/macyfong525/work-smart.git`
 
 In the project directory, you can run:
 
-### `npm install`
+`npm install`
 
-### `npm start`
+`npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
