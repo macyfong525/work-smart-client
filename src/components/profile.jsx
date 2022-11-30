@@ -1,39 +1,51 @@
 import Table from 'react-bootstrap/Table';
+import axios from "axios";
+import { useEffect, useState } from "react";
+
+const Record = (props) => (
+	<tr>
+	  <td>{props.user.firstname}</td>
+	  <td>{props.user.lastname}</td>
+	  <td>@{props.user.username}</td>
+	  <td>{props.user.email}</td>
+	  <td>{props.user.phoneNum}</td>
+	  <td>{props.user.department}</td>
+	  <td></td>
+	</tr>
+   );
 
 const Profile = () => {
+	const [records, setRecords] = useState([]);
+
+	useEffect(() => {
+		const url = "http://localhost:5001/api/userinfo";
+	
+		axios.get(url).then((resp) => {
+		  console.log(resp.data);
+		  setRecords(resp.data);
+		});
+	  }, []);
+
 	return (
-		<div style={{display:"flex", textAlign:"center"}}>
+		<div style={{padding:"20px", textAlign:"center"}}>
+		<h1>Display All Users</h1>
 		<Table striped >
 		  <thead>
 			<tr>
-			  <th>#</th>
 			  <th>First Name</th>
 			  <th>Last Name</th>
 			  <th>Username</th>
+			  <th>Email</th>
+			  <th>Phone Number</th>
+			  <th>Department</th>
 			</tr>
 		  </thead>
 		  <tbody>
-			<tr>
-			  <td>1</td>
-			  <td>Mark</td>
-			  <td>Otto</td>
-			  <td>@mdo</td>
-			</tr>
-			<tr>
-			  <td>2</td>
-			  <td>Jacob</td>
-			  <td>Thornton</td>
-			  <td>@fat</td>
-			</tr>
-			<tr>
-			  <td>3</td>
-			  <td colSpan={2}>Larry the Bird</td>
-			  <td>@twitter</td>
-			</tr>
+			{records.map((user)=><Record user={user} key={user._id}/>)}
 		  </tbody>
 		</Table>
 		</div>
 	  );
 	}
  
-export default Profile;<div>Profile</div>
+export default Profile;
