@@ -1,9 +1,8 @@
 import logo from "../images/logo.png";
+import Profile from './profile'
 
-const Home = () => {
-	return ( <div>
-	<img src={logo} />
-	</div>  );
-}
- 
+const Home = ({users=[]}) => {
+  return <Profile users={users}/>;
+};
+
 export default Home;

@@ -1,39 +1,40 @@
-import Table from 'react-bootstrap/Table';
+import Table from "react-bootstrap/Table";
 
-const Profile = () => {
-	return (
-		<div style={{display:"flex", textAlign:"center"}}>
-		<Table striped >
-		  <thead>
-			<tr>
-			  <th>#</th>
-			  <th>First Name</th>
-			  <th>Last Name</th>
-			  <th>Username</th>
-			</tr>
-		  </thead>
-		  <tbody>
-			<tr>
-			  <td>1</td>
-			  <td>Mark</td>
-			  <td>Otto</td>
-			  <td>@mdo</td>
-			</tr>
-			<tr>
-			  <td>2</td>
-			  <td>Jacob</td>
-			  <td>Thornton</td>
-			  <td>@fat</td>
-			</tr>
-			<tr>
-			  <td>3</td>
-			  <td colSpan={2}>Larry the Bird</td>
-			  <td>@twitter</td>
-			</tr>
-		  </tbody>
-		</Table>
-		</div>
-	  );
-	}
- 
-export default Profile;<div>Profile</div>
+const Record = (props) => (
+  <tr>
+    <td>{props.user.firstname}</td>
+    <td>{props.user.lastname}</td>
+    <td>@{props.user.username}</td>
+    <td>{props.user.email}</td>
+    <td>{props.user.phoneNum}</td>
+    <td>{props.user.department}</td>
+    <td></td>
+  </tr>
+);
+
+const Profile = ({users=[]}) => {
+  return (
+    <div style={{ padding: "20px", textAlign: "center" }}>
+      <h1>All Users</h1>
+      <Table striped>
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Department</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map((user) => (
+            <Record user={user} key={user._id} />
+          ))}
+        </tbody>
+      </Table>
+    </div>
+  );
+};
+
+export default Profile;

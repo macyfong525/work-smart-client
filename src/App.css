@@ -43,10 +43,43 @@ body {
   margin: 0;
   padding: 0;
 }
+
 .App {
   display: flex;
 }
+
 main {
   padding: 0px;
   width: 100%;
+  margin-top: 99px;
+}
+
+.calendar {
+  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+  font-size: 14px;
+  padding: 3em;
+  
+}
+
+a:not([href]) {
+  color: inherit;
+  text-decoration: none;
+}
+
+Form{
+  padding: 8px;
+  /* border: solid black 1px; */
+  border-radius: 5px;
+}
+
+.task-container{
+  padding:3em
+}
+
+td{
+  vertical-align: middle;
+}
+
+h1{
+  text-align: center;
 }
