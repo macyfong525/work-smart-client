@@ -37,20 +37,20 @@ export default function SideBar(props) {
 				<span className={styles.linkText}>Task</span>
 			</NavLink>
 
-			<NavLink key={2} className={styles.sideitem} to="/schedule">
-				<span><AiFillCalendar /></span>
-				<span className={styles.linkText}>Schedule</span>
-			</NavLink>
-
 			<NavLink key={3} className={styles.sideitem} to="/jobs">
 				<span><AiTwotoneTool /></span>
 				<span className={styles.linkText}>Jobs</span>
 			</NavLink>
 
-			<NavLink key={4} className={styles.sideitem} to="/profile">
+			<NavLink key={2} className={styles.sideitem} to="/schedule">
+				<span><AiFillCalendar /></span>
+				<span className={styles.linkText}>Schedule</span>
+			</NavLink>
+
+			{/* <NavLink key={4} className={styles.sideitem} to="/profile">
 				<span><AiOutlineUser /></span>
 				<span className={styles.linkText}>Profile</span>
-			</NavLink>
+			</NavLink> */}
 
 			<NavLink key={5} className={styles.sideitem} onClick={showSidebar} >
 				<span><BiSupport /></span>

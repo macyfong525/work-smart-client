@@ -4,23 +4,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import DateRangePicker from "react-bootstrap-daterangepicker";
 
-const AddTask = () => {
-  const [users, setUsers] = useState([]);
-  const [selectUser, setSelectUser] = useState("");
+const AddTask = ({users=[]}) => {
+  const [selectUser, setSelectUser] = useState(users[0].username);
   const [start, setStart] = useState(new Date());
   const [end, setEnd] = useState(new Date());
   const [title, settitle] = useState("");
   const [impt, setImpt] = useState(false);
-
-  useEffect(() => {
-    const url = "http://localhost:5001/api/userinfo";
-
-    axios.get(url).then((resp) => {
-      //   console.log(resp.data);
-      setUsers(resp.data);
-      setSelectUser(resp.data[0]._id);
-    });
-  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -43,18 +32,21 @@ const AddTask = () => {
       console.log(resp.data);
       alert(resp.data);
     });
-    event.target.reset();
+    console.log(event)
     setStart(new Date());
     setEnd(new Date());
+    event.target.reset();
     settitle("");
+    setSelectUser(users[0].username);
   };
 
   return (
     <div className="task-container">
+      <h1>Add Task</h1>
       <Form onSubmit={handleSubmit}>
         <fieldset>
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="addTaskInput">Add Task</Form.Label>
+            <Form.Label htmlFor="addTaskInput">Task Title</Form.Label>
             <Form.Control
               id="addTaskInput"
               placeholder="enter task title"
@@ -68,8 +60,8 @@ const AddTask = () => {
               onChange={(e) => setSelectUser(e.target.value)}
             >
               {users.map((user) => (
-                <option key={user._id} value={user._id}>
-                  {user.firstname}
+                <option key={user._id} value={user.username}>
+                  {user.username} ({user.firstname} {user.lastname})
                 </option>
               ))}
             </Form.Select>
@@ -81,7 +73,7 @@ const AddTask = () => {
             <DateRangePicker
               initialSettings={{
                 locale: {
-                  format: "M/DD hh:mm A",
+                  format: "DD/M/YYYY, HH:mm:ss",
                 },
                 startDate: start,
                 endDate: end,
@@ -93,11 +85,12 @@ const AddTask = () => {
                 //     picker.startDate.toISOString(),
                 //     picker.endDate.toISOString()
                 //   );
+                console.log("datarangepicker", event)
                 setStart(new Date(picker.startDate));
                 setEnd(new Date(picker.endDate));
               }}
             >
-              <input className="form-control" type="text" />
+              <input className="form-control" type="text" placeholder={start.toLocaleString() +' - '+ end.toLocaleString()}/>
             </DateRangePicker>
           </Form.Group>
           <Form.Group className="mb-3">

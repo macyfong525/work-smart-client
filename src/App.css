@@ -51,6 +51,7 @@ body {
 main {
   padding: 0px;
   width: 100%;
+  margin-top: 99px;
 }
 
 .calendar {
@@ -66,11 +67,19 @@ a:not([href]) {
 }
 
 Form{
-  padding: 3em;
-  border: solid black 1px;
+  padding: 8px;
+  /* border: solid black 1px; */
   border-radius: 5px;
 }
 
 .task-container{
   padding:3em
+}
+
+td{
+  vertical-align: middle;
+}
+
+h1{
+  text-align: center;
 }
